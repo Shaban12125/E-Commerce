@@ -28,13 +28,15 @@ const res = axios.post(
 
   window.location.href = "/login";
 } catch (err) {
-  console.error("Registration Error:", err);
+console.log("Registration Error:", err);
 
-  alert(
-    err.response?.data?.message ||
-    "Registration Failed"
-  );
+const errorMessage =
+err?.response?.data?.message ||
+"Registration Failed";
+
+alert(errorMessage);
 }
+
 
 
 };

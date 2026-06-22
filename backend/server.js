@@ -38,6 +38,10 @@ app.get("/", (req, res) => {
     res.send("Backend Running Successfully");
 });
 
+
+app.get("/debug", (req, res) => {
+    res.send("Debug route works");
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {

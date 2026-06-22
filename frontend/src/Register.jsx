@@ -9,7 +9,7 @@ const [password, setPassword] = useState("");
 const register = async () => {
 try {
 const res = axios.post(
-  "https://e-commerce-1-l5d1.onrender.com/api/auth/register",
+  "https://e-commerce-production-8158.up.railway.app/api/auth/register",
   {
     name,
     email,

@@ -15,7 +15,7 @@ useEffect(() => {
 
 useEffect(() => {
 axios
-.get("https://e-commerce-1-l5d1.onrender.com/api/products")
+.get("https://e-commerce-production-8158.up.railway.app/api/products")
 .then((res) => {
 setProducts(res.data);
 })

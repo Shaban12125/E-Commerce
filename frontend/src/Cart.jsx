@@ -26,7 +26,7 @@ try {
   };
 
   await axios.post(
-    "http://localhost:5000/api/orders",
+    "https://e-commerce-production-8158.up.railway.app/api/orders",
     order
   );
 

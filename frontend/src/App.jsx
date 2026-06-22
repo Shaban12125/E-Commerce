@@ -9,6 +9,8 @@ import Cart from "./Cart";
 function App() {
 const [cart, setCart] = useState([]);
 
+const isLoggedIn = localStorage.getItem("token");
+
 const logout = () => {
 localStorage.removeItem("token");
 alert("Logged Out");
@@ -20,40 +22,32 @@ return ( <BrowserRouter> <nav className="bg-gray-900 text-white p-4"> <div class
 
 
       <div className="space-x-4">
-        <Link
-          to="/"
-          className="hover:text-gray-300"
-        >
-          Home
-        </Link>
+        <Link to="/">Home</Link>
 
-        <Link
-          to="/cart"
-          className="hover:text-gray-300"
-        >
+        <Link to="/cart">
           Cart ({cart.length})
         </Link>
 
-        <Link
-          to="/login"
-          className="hover:text-gray-300"
-        >
-          Login
-        </Link>
+        {!isLoggedIn && (
+          <>
+            <Link to="/login">
+              Login
+            </Link>
 
-        <Link
-          to="/register"
-          className="hover:text-gray-300"
-        >
-          Register
-        </Link>
+            <Link to="/register">
+              Register
+            </Link>
+          </>
+        )}
 
-        <button
-          onClick={logout}
-          className="bg-red-600 px-3 py-1 rounded"
-        >
-          Logout
-        </button>
+        {isLoggedIn && (
+          <button
+            onClick={logout}
+            className="bg-red-600 px-3 py-1 rounded"
+          >
+            Logout
+          </button>
+        )}
       </div>
     </div>
   </nav>

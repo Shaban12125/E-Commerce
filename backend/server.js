@@ -17,11 +17,26 @@ app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
-mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        console.log("✅ MongoDB Connected");
+        console.log("Database Name:", mongoose.connection.name);
+    })
+    .catch((err) => {
+        console.error("❌ MongoDB Connection Error:", err);
+    });
+
+app.get("/test", async(req, res) => {
+    try {
+        const collections = await mongoose.connection.db.listCollections().toArray();
+        res.json(collections);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 app.listen(5000, () => {
     console.log("Server running on port 5000");
 });
+
+console.log("JWT_SECRET =", process.env.JWT_SECRET);

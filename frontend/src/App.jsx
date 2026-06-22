@@ -1,65 +1,98 @@
-import { useEffect,useState } from "react";
-import axios from "axios";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
+
+import Home from "./Home";
+import Login from "./Login";
+import Register from "./Register";
+import Cart from "./Cart";
 
 function App() {
+const [cart, setCart] = useState([]);
 
- const [products,setProducts] =
- useState([]);
+const logout = () => {
+localStorage.removeItem("token");
+alert("Logged Out");
+window.location.href = "/login";
+};
 
- useEffect(()=>{
+return ( <BrowserRouter> <nav className="bg-gray-900 text-white p-4"> <div className="max-w-7xl mx-auto flex justify-between items-center"> <h1 className="text-2xl font-bold">
+🛒 E-Commerce Store </h1>
 
-  axios
-   .get("http://localhost:5000/api/products")
-   .then(res=>{
-     setProducts(res.data);
-   });
 
- },[]);
+      <div className="space-x-4">
+        <Link
+          to="/"
+          className="hover:text-gray-300"
+        >
+          Home
+        </Link>
 
- return (
+        <Link
+          to="/cart"
+          className="hover:text-gray-300"
+        >
+          Cart ({cart.length})
+        </Link>
 
-  <div className="p-10">
+        <Link
+          to="/login"
+          className="hover:text-gray-300"
+        >
+          Login
+        </Link>
 
-   <h1 className="text-3xl font-bold">
-     E-Commerce Store
-   </h1>
+        <Link
+          to="/register"
+          className="hover:text-gray-300"
+        >
+          Register
+        </Link>
 
-   <div className="grid grid-cols-3 gap-4 mt-6">
-
-    {products.map(product=>(
-      <div
-       key={product._id}
-       className="border p-4 rounded"
-      >
-
-       <img
-        src={product.image}
-        alt=""
-        className="h-40 w-full object-cover"
-       />
-
-       <h2 className="font-bold">
-         {product.name}
-       </h2>
-
-       <p>
-         ₹{product.price}
-       </p>
-
-       <button
-        className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
-       >
-        Add To Cart
-       </button>
-
+        <button
+          onClick={logout}
+          className="bg-red-600 px-3 py-1 rounded"
+        >
+          Logout
+        </button>
       </div>
-    ))}
+    </div>
+  </nav>
 
-   </div>
+  <Routes>
+    <Route
+      path="/"
+      element={
+        <Home
+          cart={cart}
+          setCart={setCart}
+        />
+      }
+    />
 
-  </div>
+    <Route
+      path="/cart"
+      element={
+        <Cart
+          cart={cart}
+          setCart={setCart}
+        />
+      }
+    />
 
- );
+    <Route
+      path="/login"
+      element={<Login />}
+    />
+
+    <Route
+      path="/register"
+      element={<Register />}
+    />
+  </Routes>
+</BrowserRouter>
+
+
+);
 }
 
 export default App;

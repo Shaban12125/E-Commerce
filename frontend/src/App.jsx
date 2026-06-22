@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react";
 
 import Home from "./Home";
-import Login from "./Login";
+import Login from "./login";
 import Register from "./Register";
 import Cart from "./Cart";
 

@@ -5,7 +5,7 @@ function Login() {
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
 
-const login = async () => {
+const Login = async () => {
 try {
 const res =axios.post(
   "https://e-commerce-production-8158.up.railway.app/api/auth/login",
@@ -55,7 +55,7 @@ return ( <div className="min-h-screen flex justify-center items-center bg-gray-1
     />
 
     <button
-      onClick={login}
+      onClick={Login}
       className="bg-blue-600 text-white px-4 py-2 rounded w-full"
     >
       Login

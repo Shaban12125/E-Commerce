@@ -8,13 +8,13 @@ const [password, setPassword] = useState("");
 
 const register = async () => {
 try {
-const res = axios.post(
-  "https://e-commerce-production-8158.up.railway.app/api/auth/register",
-  {
-    name,
-    email,
-    password,
-  }
+const res = await axios.post(
+"https://e-commerce-production-8158.up.railway.app/api/auth/register",
+{
+name,
+email,
+password,
+}
 );
 
 
@@ -28,15 +28,14 @@ const res = axios.post(
 
   window.location.href = "/login";
 } catch (err) {
-console.log("Registration Error:", err);
+  console.log("Registration Error:", err);
 
-const errorMessage =
-err?.response?.data?.message ||
-"Registration Failed";
+  const errorMessage =
+    err?.response?.data?.message ||
+    "Registration Failed";
 
-alert(errorMessage);
+  alert(errorMessage);
 }
-
 
 
 };
@@ -44,11 +43,14 @@ alert(errorMessage);
 return ( <div className="min-h-screen flex items-center justify-center bg-gray-100"> <div className="bg-white p-8 rounded-lg shadow-lg w-96"> <h1 className="text-3xl font-bold mb-6 text-center">
 Register </h1>
 
+
     <input
       type="text"
       placeholder="Name"
       value={name}
-      onChange={(e) => setName(e.target.value)}
+      onChange={(e) =>
+        setName(e.target.value)
+      }
       className="border p-2 w-full mb-4 rounded"
     />
 
@@ -56,7 +58,9 @@ Register </h1>
       type="email"
       placeholder="Email"
       value={email}
-      onChange={(e) => setEmail(e.target.value)}
+      onChange={(e) =>
+        setEmail(e.target.value)
+      }
       className="border p-2 w-full mb-4 rounded"
     />
 
@@ -64,7 +68,9 @@ Register </h1>
       type="password"
       placeholder="Password"
       value={password}
-      onChange={(e) => setPassword(e.target.value)}
+      onChange={(e) =>
+        setPassword(e.target.value)
+      }
       className="border p-2 w-full mb-4 rounded"
     />
 

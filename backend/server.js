@@ -34,6 +34,9 @@ app.get("/test", async(req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+app.get("/", (req, res) => {
+    res.send("Backend Running Successfully");
+});
 
 app.listen(5000, () => {
     console.log("Server running on port 5000");

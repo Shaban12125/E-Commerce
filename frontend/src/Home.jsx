@@ -15,7 +15,7 @@ useEffect(() => {
 
 useEffect(() => {
 axios
-.get("http://localhost:5000/api/products")
+.get("https://e-commerce-1-l5d1.onrender.com/api/products")
 .then((res) => {
 setProducts(res.data);
 })

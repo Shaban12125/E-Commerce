@@ -7,12 +7,12 @@ const [password, setPassword] = useState("");
 
 const login = async () => {
 try {
-const res = await axios.post(
-"http://localhost:5000/api/auth/login",
-{
-email,
-password,
-}
+const res =axios.post(
+  "https://e-commerce-1-l5d1.onrender.com/api/auth/login",
+  {
+    email,
+    password,
+  }
 );
 
 

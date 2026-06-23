@@ -11,9 +11,9 @@ try {
 const res = await axios.post(
 "https://e-commerce-production-8158.up.railway.app/api/auth/register",
 {
-name,
-email,
-password,
+    name,
+    email,
+    password,
 }
 );
 
